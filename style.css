@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:cursive;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
   display: flex;
 }
 
-/* Kreisā zilā josla */
+
 .sidebar {
   width: 35%;
   background: linear-gradient(180deg, #00a4ff, #0076ff);
@@ -27,16 +27,16 @@ body {
 }
 
 .sidebar h1 {
-  font-size: 32px;
+  font-size: 33px;
   margin-bottom: 10px;
 }
 
 .sidebar p {
-  font-size: 16px;
+  font-size: 17px;
   opacity: 0.9;
 }
 
-/* Te var ielikt attēlu, pagaidām – vienkāršs aplis */
+
 .sidebar-illustration {
   width: 100%;
   height: 220px;
@@ -44,7 +44,7 @@ body {
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* Labā balta daļa */
+
 .main-content {
   width: 65%;
   background: #ffffff;
@@ -52,7 +52,7 @@ body {
   position: relative;
 }
 
-/* Augšējā atpakaļpoga/saite */
+
 .back-link {
   font-size: 14px;
   color: #777;
@@ -65,19 +65,21 @@ body {
   text-decoration: underline;
 }
 
-/* Galvenes teksts */
+
 .main-content h2 {
-  font-size: 28px;
-  color: #1f3b5d;
+    font-family:cursive;
+  font-size: 32px;
+  color: #4d627c;
   margin-bottom: 15px;
 }
 
 .main-content p.subtitle {
+
   color: #777;
   margin-bottom: 30px;
 }
 
-/* Pogas */
+
 .btn-row {
   display: flex;
   gap: 15px;
@@ -89,16 +91,16 @@ body {
 .btn-danger {
   padding: 10px 22px;
   border-radius: 4px;
-  border: none;
-  cursor: pointer;
+  border: rgb(255, 255, 255);
+  cursor: finger ;
   font-size: 14px;
   text-decoration: none;
   display: inline-block;
 }
 
 .btn-primary {
-  background: #1a73e8;
-  color: white;
+  background: #3652cf;
+  color: rgb(0, 0, 0);
 }
 
 .btn-primary:hover {
@@ -107,12 +109,12 @@ body {
 
 .btn-outline {
   background: transparent;
-  color: #1a73e8;
+  color: #000000;
   border: 1px solid #1a73e8;
 }
 
 .btn-outline:hover {
-  background: #4bbb7d;
+  background: #4b69bb;
 }
 
 .btn-danger {
