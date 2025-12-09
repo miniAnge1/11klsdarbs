@@ -105,7 +105,7 @@ body {
 }
 
 .btn-primary:hover {
-  opacity: 0;
+  opacity: 0.5;
 }
 
 .btn-outline {
