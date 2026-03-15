@@ -3,7 +3,7 @@ let aktivaisFiltrs = "visi";
 
 async function ieladetDatus() {
   try {
-    const inventarsResponse = await fetch("./inventars.json");
+    const inventarsResponse = await fetch("./inventars .json");
     if (!inventarsResponse.ok) {
       throw new Error(`Neizdevās ielādēt inventars.json: ${inventarsResponse.status} ${inventarsResponse.statusText}`);
     }
@@ -17,7 +17,7 @@ async function ieladetDatus() {
 
     const inventaraDati = inventars.map(item => ({
       ...item,
-      kategorija: "inventars",
+      kategorija: "Aprīkojums",
       svarsDaudzums: `${item.daudzums ?? "-"}${item.mervienibas ? " " + item.mervienibas.trim() : ""}`
     }));
 
@@ -46,8 +46,8 @@ function atjaunotTabulu() {
 
   if (aktivaisFiltrs === "viela") {
     filtrētieDati = filtrētieDati.filter(item => item.kategorija === "viela");
-  } else if (aktivaisFiltrs === "inventars") {
-    filtrētieDati = filtrētieDati.filter(item => item.kategorija === "inventars");
+  } else if (aktivaisFiltrs === "Aprīkojums") {
+    filtrētieDati = filtrētieDati.filter(item => item.kategorija === "Aprīkojums");
   }
 
   if (meklejums) {
@@ -97,7 +97,7 @@ document.getElementById("showVielasBtn").addEventListener("click", () => {
 });
 
 document.getElementById("showInventarsBtn").addEventListener("click", () => {
-  aktivaisFiltrs = "inventars";
+  aktivaisFiltrs = "Aprīkojums";
   uzstaditAktivoPogu("showInventarsBtn");
   atjaunotTabulu();
 });
