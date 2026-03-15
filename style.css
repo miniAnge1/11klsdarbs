@@ -93,13 +93,13 @@ body {
   padding: 10px 22px;
   border-radius: 20px;
   border: rgb(255, 255, 255);
-  cursor: finger ;
   font-size: 14px;
   text-decoration: none;
   display: inline-block;
 }
 
 .btn-primary {
+
   background: #3652cf;
   color: rgb(0, 0, 0);
 }
@@ -109,6 +109,14 @@ body {
 }
 
 .btn-outline {
+  .shake-btn:hover {
+    animation: btn-shake 0.6s;
+  }
+  
+  .letter{
+    animation: gltich;
+  } 
+  
   background: transparent;
   color: #000000;
   border: 1px solid #1a73e8;
