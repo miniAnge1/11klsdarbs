@@ -4,7 +4,13 @@ let aktivaisFiltrs = "visi";
 async function ieladetDatus() {
   try {
     const inventarsResponse = await fetch("./inventars.json");
+    if (!inventarsResponse.ok) {
+      throw new Error(`Neizdevās ielādēt inventars.json: ${inventarsResponse.status} ${inventarsResponse.statusText}`);
+    }
     const vielasResponse = await fetch("./vielas.json");
+    if (!vielasResponse.ok) {
+      throw new Error(`Neizdevās ielādēt vielas.json: ${vielasResponse.status} ${vielasResponse.statusText}`);
+    }
 
     const inventars = await inventarsResponse.json();
     const vielas = await vielasResponse.json();
@@ -12,24 +18,28 @@ async function ieladetDatus() {
     const inventaraDati = inventars.map(item => ({
       ...item,
       kategorija: "inventars",
-      svarsDaudzums: "-"
+      svarsDaudzums: `${item.daudzums ?? "-"}${item.mervienibas ? " " + item.mervienibas.trim() : ""}`
     }));
 
     const vieluDati = vielas.map(item => ({
       ...item,
       kategorija: "viela",
-      svarsDaudzums: ${item.daudzums ?? "-"} ${item.mervienibas ?? ""}.trim()
+      svarsDaudzums: `${item.daudzums ?? "-"} ${(item.mervienibas ?? "").trim()}`
     }));
 
     visiDati = [...inventaraDati, ...vieluDati];
     atjaunotTabulu();
-  } catch (error) {
+        } catch (error) {
     console.error("Kļūda ielādējot datus:", error);
   }
 }
 
 function atjaunotTabulu() {
   const tbody = document.getElementById("tableBody");
+  if (!tbody) {
+    console.warn('Element with id "tableBody" not found.');
+    return;
+  }
   const meklejums = document.getElementById("searchInput").value.toLowerCase();
 
   let filtrētieDati = visiDati;
