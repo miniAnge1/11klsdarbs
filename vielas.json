@@ -1,0 +1,22 @@
+[
+  {
+    "id": 2,
+    "nosaukums": "Kalcija karbonāts CaCO3",
+    "tips": "reaģents",
+    "apakstips": "sāls",
+    "skaits": 25,
+    "daudzums": 100,
+    "mervienibas": "g",
+    "komentari": ""
+  },
+  {
+    "id": 3,
+    "nosaukums": "NaOH šķīdums 10%",
+    "tips": "reaģents",
+    "apakstips": "hidroksīds",
+    "skaits": 45,
+    "daudzums": 50,
+    "mervienibas": "ml",
+    "komentari": "Šķīdums izvedots un sapildīts 2020.09.23"
+  }
+]
