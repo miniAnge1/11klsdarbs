@@ -1,54 +1,49 @@
 let vielas = [];
 let inventars = [];
 
-async function ieladet() {
+async function start() {
 
-    const v = await fetch("vielas.json");
+    let v = await fetch("vielas.json");
     vielas = await v.json();
 
-    const i = await fetch("inventars.json");
+    let i = await fetch("inventars.json");
     inventars = await i.json();
 
-    raditTabulu([...vielas, ...inventars]);
+    radit([...vielas, ...inventars]);
 }
 
-function raditTabulu(dati) {
+function radit(dati){
 
     let tabula = document.getElementById("tabula");
     tabula.innerHTML = "";
 
     dati.forEach(x => {
 
-        let rinda = `
+        tabula.innerHTML += `
         <tr>
-            <td>${x.id}</td>
-            <td>${x.nosaukums}</td>
-            <td>${x.tips}</td>
-            <td>${x.apakstips}</td>
-            <td>${x.skaits}</td>
-            <td>${x.komentari || ""}</td>
+        <td>${x.id}</td>
+        <td>${x.nosaukums}</td>
+        <td>${x.skaits}</td>
         </tr>
         `;
-
-        tabula.innerHTML += rinda;
     });
 }
 
-function filtrēt(){
+function filtrs(){
 
-    let izvele = document.getElementById("filtrs").value;
+    let f = document.getElementById("filtrs").value;
 
-    if(izvele == "vielas"){
-        raditTabulu(vielas);
+    if(f === "vielas"){
+        radit(vielas);
     }
 
-    else if(izvele == "inventars"){
-        raditTabulu(inventars);
+    else if(f === "inventars"){
+        radit(inventars);
     }
 
     else{
-        raditTabulu([...vielas, ...inventars]);
+        radit([...vielas, ...inventars]);
     }
 }
 
-window.onload = ieladet;
+start();
