@@ -1,18 +1,18 @@
 [
   {
-    "id": 1,
-    "nosaukums": "Mehāniskie svari QWS",
-    "tips": "svari",
     "apakstips": "mehāniskie svari",
+    "id": 1,
+    "komentari": "",
+    "nosaukums": "Mehāniskie svari QWS",
     "skaits": 5,
-    "komentari": ""
+    "tips": "svari"
   },
   {
-    "id": 2,
-    "nosaukums": "Elektroniskie svari ES-25",
-    "tips": "svari",
     "apakstips": "elektroniskie svari",
+    "id": 2,
+    "komentari": "Darbojas uz 3 AAA tipa baterijām",
+    "nosaukums": "Elektroniskie svari ES-25",
     "skaits": 15,
-    "komentari": "Darbojas uz 3 AAA tipa baterijām"
+    "tips": "svari"
   }
 ]

@@ -105,3 +105,63 @@ document.getElementById("showInventarsBtn").addEventListener("click", () => {
 document.getElementById("searchInput").addEventListener("input", atjaunotTabulu);
 
 ieladetDatus();
+
+
+let vielas = [];
+let inventars = [];
+
+async function ieladetDatus() {
+
+    const vielasRes = await fetch("vielas.json");
+    vielas = await vielasRes.json();
+
+    const inventarsRes = await fetch("inventars.json");
+    inventars = await inventarsRes.json();
+
+    raditVisu();
+}
+// filepath: inventars.json
+[
+  {
+    "id": 1,
+    "nosaukums": "Example Item",
+    "apakstips": "Type A",
+    "skaits": 10,
+    "komentari": "Optional comment"
+  }
+]
+function aizpilditTabulu(dati) {
+
+    const tabula = document.getElementById("tabulasSaturs");
+    tabula.innerHTML = "";
+
+    dati.forEach(el => {
+
+        const rinda = `
+        <tr>
+            <td>${el.id}</td>
+            <td>${el.nosaukums}</td>
+            <td>${el.apakstips}</td>
+            <td>${el.skaits}</td>
+            <td>${el.komentari || ""}</td>
+        </tr>
+        `;
+
+        tabula.innerHTML += rinda;
+    });
+}
+
+function raditVielas() {
+    aizpilditTabulu(vielas);
+}
+
+function raditInventaru() {
+    aizpilditTabulu(inventars);
+}
+
+function raditVisu() {
+    const visi = [...vielas, ...inventars];
+    aizpilditTabulu(visi);
+}
+
+window.onload = ieladetDatus;
