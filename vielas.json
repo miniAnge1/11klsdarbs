@@ -1,4 +1,6 @@
 [
+  { "id": 1, "nosaukums": "Ūdens", "skaits": 5 }
+
   {
     "apakstips": "sāls",
     "daudzums": 100,
