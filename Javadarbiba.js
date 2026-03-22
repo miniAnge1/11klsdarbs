@@ -3,13 +3,11 @@ let aktivaisFiltrs = "visi";
 
 async function ieladetDatus() {
   try {
-    const inventarsResponse = await fetch("./inventars .json");
-    if (!inventarsResponse.ok) {
-      throw new Error(`Neizdevās ielādēt inventars.json: ${inventarsResponse.status} ${inventarsResponse.statusText}`);
-    }
+    const inventarsResponse = await fetch("./inventars.json"); // FIXED (removed space)
     const vielasResponse = await fetch("./vielas.json");
-    if (!vielasResponse.ok) {
-      throw new Error(`Neizdevās ielādēt vielas.json: ${vielasResponse.status} ${vielasResponse.statusText}`);
+
+    if (!inventarsResponse.ok || !vielasResponse.ok) {
+      throw new Error("Neizdevās ielādēt JSON failus");
     }
 
     const inventars = await inventarsResponse.json();
@@ -29,17 +27,16 @@ async function ieladetDatus() {
 
     visiDati = [...inventaraDati, ...vieluDati];
     atjaunotTabulu();
-        } catch (error) {
+
+  } catch (error) {
     console.error("Kļūda ielādējot datus:", error);
   }
 }
 
 function atjaunotTabulu() {
   const tbody = document.getElementById("tableBody");
-  if (!tbody) {
-    console.warn('Element with id "tableBody" not found.');
-    return;
-  }
+  if (!tbody) return;
+
   const meklejums = document.getElementById("searchInput").value.toLowerCase();
 
   let filtrētieDati = visiDati;
@@ -80,88 +77,32 @@ function atjaunotTabulu() {
 }
 
 function uzstaditAktivoPogu(pogasId) {
-  document.querySelectorAll(".toolbar button").forEach(btn => btn.classList.remove("active"));
+  document.querySelectorAll(".toolbar button")
+    .forEach(btn => btn.classList.remove("active"));
+
   document.getElementById(pogasId).classList.add("active");
 }
 
-document.getElementById("showAllBtn").addEventListener("click", () => {
-  aktivaisFiltrs = "visi";
-  uzstaditAktivoPogu("showAllBtn");
-  atjaunotTabulu();
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("showAllBtn").addEventListener("click", () => {
+    aktivaisFiltrs = "visi";
+    uzstaditAktivoPogu("showAllBtn");
+    atjaunotTabulu();
+  });
+
+  document.getElementById("showVielasBtn").addEventListener("click", () => {
+    aktivaisFiltrs = "viela";
+    uzstaditAktivoPogu("showVielasBtn");
+    atjaunotTabulu();
+  });
+
+  document.getElementById("showInventarsBtn").addEventListener("click", () => {
+    aktivaisFiltrs = "Aprīkojums";
+    uzstaditAktivoPogu("showInventarsBtn");
+    atjaunotTabulu();
+  });
+
+  document.getElementById("searchInput").addEventListener("input", atjaunotTabulu);
+
+  ieladetDatus();
 });
-
-document.getElementById("showVielasBtn").addEventListener("click", () => {
-  aktivaisFiltrs = "viela";
-  uzstaditAktivoPogu("showVielasBtn");
-  atjaunotTabulu();
-});
-
-document.getElementById("showInventarsBtn").addEventListener("click", () => {
-  aktivaisFiltrs = "Aprīkojums";
-  uzstaditAktivoPogu("showInventarsBtn");
-  atjaunotTabulu();
-});
-
-document.getElementById("searchInput").addEventListener("input", atjaunotTabulu);
-
-ieladetDatus();
-
-
-let vielas = [];
-let inventars = [];
-
-async function ieladetDatus() {
-
-    const vielasRes = await fetch("vielas.json");
-    vielas = await vielasRes.json();
-
-    const inventarsRes = await fetch("inventars.json");
-    inventars = await inventarsRes.json();
-
-    raditVisu();
-}
-// filepath: inventars.json
-[
-  {
-    "id": 1,
-    "nosaukums": "Example Item",
-    "apakstips": "Type A",
-    "skaits": 10,
-    "komentari": "Optional comment"
-  }
-]
-function aizpilditTabulu(dati) {
-
-    const tabula = document.getElementById("tabulasSaturs");
-    tabula.innerHTML = "";
-
-    dati.forEach(el => {
-
-        const rinda = `
-        <tr>
-            <td>${el.id}</td>
-            <td>${el.nosaukums}</td>
-            <td>${el.apakstips}</td>
-            <td>${el.skaits}</td>
-            <td>${el.komentari || ""}</td>
-        </tr>
-        `;
-
-        tabula.innerHTML += rinda;
-    });
-}
-
-function raditVielas() {
-    aizpilditTabulu(vielas);
-}
-
-function raditInventaru() {
-    aizpilditTabulu(inventars);
-}
-
-function raditVisu() {
-    const visi = [...vielas, ...inventars];
-    aizpilditTabulu(visi);
-}
-
-window.onload = ieladetDatus;
