@@ -4,8 +4,6 @@ let inventars = [];
 async function start() {
 
     let v = await fetch("vielas.json");
-    vielas = await v.json();
-
     let i = await fetch("inventars.json");
     inventars = await i.json();
 
