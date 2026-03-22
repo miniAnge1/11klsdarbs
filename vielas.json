@@ -1,6 +1,5 @@
 [
-  { "id": 1, "nosaukums": "Ūdens", "skaits": 5 }
-
+  { "id": 1, "nosaukums": "Ūdens", "skaits": 5 },
   {
     "apakstips": "sāls",
     "daudzums": 100,
@@ -24,7 +23,7 @@
 {
   "apakstips": "sāls",
   "daudzums": 100,
-  "id": 2,
+  "id": 4,
   "komentari": "",
   "mervienibas": "g",
   "nosaukums": "Kalcija karbonāts CaCO3",
